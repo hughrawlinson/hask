@@ -14,8 +14,7 @@ zeroCrossings :: (Real a) => [a] -> Int
 zeroCrossings xs = zc xs 0 where
   zc :: (Real a, Integral b) => [a] -> b -> b
   zc (x:y:xs) count
-    | x > 0 && y < 0 = zc (y:xs) count + 1
-    | x < 0 && y > 0 = zc (y:xs) count + 1
+    | signum x /= signum y = zc (y:xs) count + 1
     | otherwise = zc (y:xs) count
   zc [x] count = count
 
